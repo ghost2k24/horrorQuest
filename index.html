@@ -73,47 +73,40 @@
   transform: scale(1.05);
 }
 
+
+/* Адаптация для телефонов */
 /* Адаптация для телефонов */
 @media (max-width: 768px) {
   .container {
     justify-content: center; /* центрируем двери */
     gap: 15px; /* расстояние между дверьми */
+    flex-direction: column; /* если хочешь, чтобы двери были одна под другой */
+    align-items: center;
   }
 
   .door {
     width: 45vw;
     height: 70vw;
   }
-}
-@media (max-width: 768px) {
+
   .screamer-img, .screamer {
     max-height: 70vh;
     width: 90vw;
   }
-}
+  #questRoom {
+    font-size: 18px;
+    padding: 10px;
+  }
 
-    .door-block {
-      text-align: center;
-    }
-    .scary-image {
-      display: block;
-      margin: 0 auto 20px auto;
-    }
-    #message {
-      display: none;
-      font-size: 30px;
-      color: #ff4c4c;
-      margin-top: 20px;
-      text-shadow: 1px 1px 3px black;
-      font-family: 'Nosifer', cursive;
-    }
-    #questRoom {
-      display: none;
-      margin-top: 40px;
-      border: 2px solid darkred;
-      padding: 20px;
-      font-size: 22px;
-    }
+  #message {
+    font-size: 24px;
+  }
+
+  .button, button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
     @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.03); }
