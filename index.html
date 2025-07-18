@@ -54,20 +54,22 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-      gap:20px;
   padding: 20px;
   box-sizing: border-box;
-  flex-wrap: wrap; /* чтобы двери не переносились */
+  flex-wrap: nowrap; /* чтобы двери не переносились */
+  gap: 20px;
 }
 
 .door {
   width: 300px;
+  max-width: 45vw;
   height: 500px;
   background-size: cover;
   background-position: center;
   cursor: pointer;
   flex-shrink: 0; /* не даём двери сжиматься */
   transition: transform 0.3s;
+  box-sizing: border-box;
 }
 
 .door:hover {
@@ -75,53 +77,24 @@
 }
 
 /* Адаптация для телефонов */
-/* Адаптация для телефонов */
 @media (max-width: 768px) {
   .container {
     justify-content: center; /* центрируем двери */
     gap: 15px; /* расстояние между дверьми */
-    flex-direction: column; /* двери одна под другой */
-    align-items: center;
   }
-
   .door {
     width: 45vw;
-    height: 70vw;
-  }
-
-  .door-block {
-    flex: 1 1 90%; /* почти всю ширину на мобилке */
-    max-width: none;
-    text-align: center;
-  }
-
-  .door-block img {
-    width: 100%;
+    max-width: 48vw;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
-
+}
+@media (max-width: 768px) {
   .screamer-img, .screamer {
     max-height: 70vh;
     width: 90vw;
   }
 }
-  #questRoom {
-    font-size: 18px;
-    padding: 10px;
-  }
-
-  #message {
-    font-size: 24px;
-  }
-
-  .button, button {
-    font-size: 16px;
-    padding: 10px 20px;
-  }
-}
-    @keyframes pulse {
+  @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.03); }
   100% { transform: scale(1); }
@@ -247,11 +220,11 @@
   <div class="container" id="doorContainer">
     <div class="door-block">
       <button onclick="choose('left')">Go Left</button><br />
-      <img src="left-door.jpg" alt="Left Door" width="400" height="400" /><br />
+      <img src="left-door.jpg" alt="Left Door" class="door" /><br />
     </div>
     <div class="door-block">
       <button onclick="choose('right')">Go Right</button><br />
-      <img src="right-door.jpg" alt="Right Door" width="400" height="400" /><br />
+      <img src="right-door.jpg" alt="Right Door" class="door" /><br />
     </div>
   </div>
 
