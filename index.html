@@ -76,24 +76,98 @@
   transform: scale(1.05);
 }
 
-/* Адаптация для телефонов */
+/* --- FINAL MOBILE FIX (REFINED) --- */
 @media (max-width: 768px) {
   .container {
-    justify-content: center; /* центрируем двери */
-    gap: 15px; /* расстояние между дверьми */
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 2vw !important;
+    padding: 0;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
   }
   .door {
-    width: 45vw;
-    max-width: 48vw;
-    height: auto;
+    width: 38vw !important;
+    max-width: 140px !important;
+    min-width: 90px !important;
+    aspect-ratio: 4/5 !important;
+    height: auto !important;
+    border-radius: 8px !important;
+    object-fit: cover !important;
+    display: inline-block !important;
+    margin: 0 !important;
+  }
+  .door-block {
+    text-align: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  button, #startQuest, #startQuestLeft, #startQuestRight {
+    font-size: 1em !important;
+    padding: 10px 0 !important;
+    margin: 10px auto !important;
+    width: 80vw !important;
+    max-width: 180px !important;
+    min-width: 90px !important;
+    display: block !important;
+    border-radius: 8px !important;
+  }
+  .scary-image {
+    width: 80vw !important;
+    max-width: 320px !important;
+    height: auto !important;
+    margin: 16px auto 8px auto !important;
+    display: block !important;
+  }
+  .horror-text-left, .horror-text-right {
+    font-size: 1em !important;
+    padding: 8px 4px !important;
+    max-width: 95vw !important;
+    border-radius: 8px !important;
+    word-break: break-word !important;
+  }
+  .horror-text-left h2, .horror-text-right h2 {
+    font-size: 1em !important;
+    line-height: 1.2 !important;
+    padding: 0 !important;
+    margin: 0 0 10px 0 !important;
+    word-break: break-word !important;
+  }
+  #questRoomLeft img, #questRoomRight img {
+    max-width: 95vw !important;
+    height: auto !important;
+    margin-bottom: 10px !important;
+    border-radius: 8px !important;
+  }
+  #message {
+    font-size: 1.2em !important;
+    padding: 0 5vw !important;
+    width: 90vw !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(0,0,0,0.85) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 20px #000 !important;
+  }
+  .final-video, video {
+    width: 90vw !important;
+    max-width: 320px !important;
+    height: auto !important;
+    display: block !important;
+    margin: 12px auto !important;
+    border-radius: 10px !important;
+    background: #000 !important;
   }
 }
-@media (max-width: 768px) {
-  .screamer-img, .screamer {
-    max-height: 70vh;
-    width: 90vw;
-  }
+@media (max-width: 480px) {
+  h1 { font-size: 1.1em !important; }
+  .horror-text-left, .horror-text-right { font-size: 0.95em !important; padding: 4px 2px !important; }
+  .door { min-width: 70px !important; max-width: 120px !important; }
+  button, #startQuest, #startQuestLeft, #startQuestRight { font-size: 0.95em !important; padding: 8px 10px !important; max-width: 95vw !important; }
 }
+/* --- END FINAL MOBILE FIX --- */
+
   @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.03); }
@@ -441,6 +515,11 @@
       document.querySelector("h1").style.display = "none";
       document.querySelector("p").style.display = "none";
       document.getElementById("doorContainer").style.display = "none";
+      // Hide any visible horror backgrounds
+      const leftBg = document.querySelector('.horror-background-left');
+      if (leftBg) leftBg.style.display = 'none';
+      const rightBg = document.querySelector('.horror-background-right');
+      if (rightBg) rightBg.style.display = 'none';
     }
     function choose(direction) {
       const screamer = document.getElementById("screamer");
