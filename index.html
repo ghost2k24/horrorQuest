@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Horror Quest</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nosifer&family=Rubik+Dirt&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Creepster&display=swap');
+    #screamer {
+      display: none;
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background-color:black;
+      z-index:9999;
+    }
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Rubik Dirt', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-family: 'Nosifer', cursive;
+      color: darkred;
+      font-size: 60px;
+      text-shadow: 2px 2px black;
+    }
+    p {
+      font-size: 20px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: darkred;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+      font-family: 'Rubik Dirt', sans-serif;
+    }
+    button:hover {
+      background-color: crimson;
+    }
+   
+    .container {
+  display: flex;
+  justify-content: space-between; /* двери по бокам */
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-wrap: nowrap; /* чтобы двери не переносились */
+}
+
+.door {
+  width: 300px;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  flex-shrink: 0; /* не даём двери сжиматься */
+  transition: transform 0.3s;
+}
+
+.door:hover {
+  transform: scale(1.05);
+}
+
+/* Адаптация для телефонов */
+@media (max-width: 768px) {
+  .container {
+    justify-content: center; /* центрируем двери */
+    gap: 15px; /* расстояние между дверьми */
+  }
+
+  .door {
+    width: 45vw;
+    height: 70vw;
+  }
+}
+@media (max-width: 768px) {
+  .screamer-img, .screamer {
+    max-height: 70vh;
+    width: 90vw;
+  }
+}
+
+    .door-block {
+      text-align: center;
+    }
+    .scary-image {
+      display: block;
+      margin: 0 auto 20px auto;
+    }
+    #message {
+      display: none;
+      font-size: 30px;
+      color: #ff4c4c;
+      margin-top: 20px;
+      text-shadow: 1px 1px 3px black;
+      font-family: 'Nosifer', cursive;
+    }
+    #questRoom {
+      display: none;
+      margin-top: 40px;
+      border: 2px solid darkred;
+      padding: 20px;
+      font-size: 22px;
+    }
+    @keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+  @keyframes flashRed {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes flashCyan {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+
+  .image {
+    width: 100%;
+  }
+
+
+.horror-text-left h2 {
+  animation: pulse 2s infinite;
+}
+    /* 🎨 СТИЛИ */
+    .horror-background-left {
+      background-image: url('hospital.jpg.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .horror-text-left {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #520505;
+      padding: 15px;
+      max-width: 80%;
+      font-family: 'Georgia', serif;
+      font-size: 1.8em;
+      line-height: 1.5;
+      text-shadow: 2px 2px 10px black;
+      border: 2px solid #444;
+      border-radius: 10px;
+      box-shadow: 0 0 20px black;
+    }
+#startQuest,
+#startQuestLeft,
+#startQuestRight {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  font-family: 'Creepster', cursive;
+  color: white;
+  background-color: #7b0000;
+  border: 2px solid #ff1a1a;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 0 10px black;
+  transition: 0.3s;
+}
+
+#startQuest:hover,
+#startQuestLeft:hover,
+#startQuestRight:hover {
+  background-color: #ff1a1a;
+  box-shadow: 0 0 20px red;
+}
+.horror-background-right {
+  background-image: url('hotel.jpg'); /* не забудь заменить на имя твоего файла */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: brightness(0.7) contrast(1.2) grayscale(0.2);
+  box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.7);
+}
+.horror-text-right {
+  background-color: rgba(0, 0, 0, 0.6);
+      color: #7c0505;
+      padding: 15px;
+      max-width: 80%;
+      font-family: 'Georgia', serif;
+      font-size: 1.8em;
+      line-height: 1.5;
+      text-shadow: 2px 2px 10px black;
+      border: 2px solid #444;
+      border-radius: 10px;
+      box-shadow: 0 0 20px black;
+}
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+.horror-text-right {
+  animation: flicker 4s infinite;
+}
+#questRoomRight {
+  background-color: #000000; /* тёмно-зелёный, болотистый */
+  padding-bottom: 30px;
+}
+
+  </style>
+</head>
+<body>
+  <img src="scary.jpg" width="1200" height="1000" alt="Creepy image" class="scary-image" />
+  <h1>You are trapped...</h1>
+  <p>Two doors stand in front of you. Which one will you choose?</p>
+
+  <div class="container" id="doorContainer">
+    <div class="door-block">
+      <button onclick="choose('left')">Go Left</button><br />
+      <img src="left-door.jpg" alt="Left Door" width="400" height="400" /><br />
+    </div>
+    <div class="door-block">
+      <button onclick="choose('right')">Go Right</button><br />
+      <img src="right-door.jpg" alt="Right Door" width="400" height="400" /><br />
+    </div>
+  </div>
+
+  <div id="message" style="
+  display: none;
+  font-size: 80px;
+  color: #ff1c1c;
+  margin-top: 0;
+  text-shadow: 3px 3px 20px black, 0 0 10px red;
+  font-family: 'Nosifer', cursive;
+  letter-spacing: 4px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  animation: shake 0.6s;
+  text-align: center;
+  width: 100vw;
+  "> GOTCHA, LOSER!</div>
+
+  <!-- LEFT DOOR QUEST -->
+  <div id="questRoomLeft" style="display:none;">
+    <div class="horror-background-left">
+      <div class="horror-text-left"> 
+        <img src="hospital.jpg.png" alt="hospital" style="width: 100%; max-width: 600px; margin: 0 auto 30px auto; display: block; border: none !important; box-shadow: none !important; outline: none;">
+        <h2>“You wake up in a cold, decaying children’s hospital. The walls are stained, the air thick with rot. This place was once a lab of nightmares—where children screamed, and no one listened.
+          Suddenly, a soft, distorted voice whispers from the shadows:<br>
+          <em>"Play with me…"</em></h2>
+        <button id="startQuestLeft">🔍 Find the Exit</button>
+      </div>
+    </div>
+    <!-- Add left quest interactivity here -->
+  </div>
+ 
+  <!-- RIGHT DOOR QUEST -->
+  <div id="questRoomRight" style="display:none;">
+    <div class="horror-background-right">
+      <div class="horror-text-right"> 
+        <img src="hotel.jpg" alt="hotel" style="width: 100%; max-width: 600px; margin: 0 auto 30px auto; display: block; border: none !important; box-shadow: none !important; outline: none;">
+        <h2>You find yourself standing in the lobby of Hotel 666 — a place once known for luxury, now abandoned and frozen in time.
+          The chandeliers sway without wind. The elevator dings… but no one is inside.
+          
+          A cold whisper trails behind you:<br>
+          <em>"Your room is ready"</em></h2>
+        <button id="startQuestRight">🔍 Find the Exit</button>
+      </div>
+    </div>
+    <!-- Add right quest interactivity here -->
+  </div>
+
+  
+  <div id="screamer">
+    <img id="screamer-img" src="" alt="Screamer" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+
+
+
+
+  <script>
+    const music = new Audio("creepy.mp3");
+    music.loop = true;
+    const leftCreak = new Audio("door-left2.mp3");
+    const rightCreak = new Audio("door-right2.mp3");
+    let musicStarted = false;
+    document.addEventListener("click", () => {
+      if (!musicStarted) {
+        music.play();
+        musicStarted = true;
+      }
+    });
+    // Use fallback for missing scream audio files
+    const screamLeft = new Audio("screamer-left.mp3" in window ? "scream-left.mp3" : "door-left2.mp3");
+    screamLeft.volume = 1.0;
+    const screamRight = new Audio("screamer-right.mp3" in window ? "scream-right.mp3" : "door-right2.mp3");
+    screamRight.volume = 1.0;
+    function hideStartPage() {
+      document.querySelector(".scary-image").style.display = "none";
+      document.querySelector("h1").style.display = "none";
+      document.querySelector("p").style.display = "none";
+      document.getElementById("doorContainer").style.display = "none";
+    }
+    function choose(direction) {
+      const screamer = document.getElementById("screamer");
+      const screamerImg = document.getElementById("screamer-img");
+      const message = document.getElementById("message");
+      const questRoomLeft = document.getElementById("questRoomLeft");
+      const questRoomRight = document.getElementById("questRoomRight");
+      const doorContainer = document.getElementById("doorContainer");
+      // Hide door buttons immediately
+      doorContainer.style.display = "none";
+      if (direction === 'left') {
+        leftCreak.play();
+        setTimeout(() => {
+          screamerImg.src = "screamer-left.jpg";
+          screamer.style.display = "block";
+          screamLeft.play();
+          setTimeout(() => {
+            screamer.style.display = "none";
+            hideStartPage();
+            message.style.display = "block";
+            setTimeout(() => {
+              message.style.display = "none";
+              questRoomLeft.style.display = "block";
+            }, 2500);
+          }, 2000);
+        }, 700);
+      } else {
+        rightCreak.play();
+        setTimeout(() => {
+          screamerImg.src = "screamer-right.jpg";
+          screamer.style.display = "block"
+          screamRight.play();
+          setTimeout(() => {
+            screamer.style.display = "none";
+            hideStartPage();
+            message.style.display = "block";
+            setTimeout(() => {
+              message.style.display = "none";
+              questRoomRight.style.display = "block";
+            }, 2500);
+          }, 2000);
+        }, 700);
+      }
+    }
+    // Quiz logic
+    let correctCount = 0;
+    let currentQuestion = 1;
+    // Make checkAnswer and showNextQuestion globally accessible
+    window.checkAnswer = function(button, isCorrect) {
+      if (isCorrect) {
+        button.style.background = "green";
+        const message = document.createElement("p");
+        message.innerText = "Correct! You may proceed...";
+        message.style.color = "lightgreen";
+        message.style.fontSize = "20px";
+        document.body.appendChild(message);
+        const doorImage = document.createElement("img");
+        doorImage.src = "next-door.jpg";
+        doorImage.style.width = "300px";
+        doorImage.style.margin = "20px";
+        document.body.appendChild(doorImage);
+        correctCount++;
+        setTimeout(() => {
+          const oldQuestion = document.getElementById(`question${currentQuestion}`);
+          if (oldQuestion) oldQuestion.remove();
+          message.remove();
+          doorImage.remove();
+          currentQuestion++;
+          showNextQuestion();
+        }, 3000);
+      } else {
+        button.style.background = "red";
+        // Use a unique screamer for quiz
+        let screamer = document.getElementById("quiz-screamer");
+        if (!screamer) {
+          screamer = document.createElement("div");
+          screamer.id = "quiz-screamer";
+          screamer.style.display = "none";
+          screamer.innerHTML = '<img src="screamer-left.jpg" width="500" />';
+          document.body.appendChild(screamer);
+        }
+        screamer.style.display = "block";
+        setTimeout(() => {
+          screamer.style.display = "none";
+          button.style.background = "";
+        }, 2000);
+      }
+    }
+    window.onload = function () {
+    const startQuestLeftBtn = document.getElementById("startQuestLeft");
+    if (startQuestLeftBtn) {
+      startQuestLeftBtn.addEventListener("click", function () {
+        // Show screamer
+        const screamer = document.getElementById("screamer");
+        const screamerImg = document.getElementById("screamer-img");
+        if (screamer && screamerImg) {
+          screamerImg.src = "screamer-left2.jpg";
+          screamer.style.display = "block";
+          const screamSound = new Audio("door-left2.mp3");
+          screamSound.play();
+          setTimeout(() => {
+            screamer.remove();
+            document.body.innerHTML = "";
+            // Show joke, meme, and play again button
+            const jokeText = document.createElement("h2");
+            jokeText.innerText = "got a loser again!";
+            jokeText.style.color = "red";
+            jokeText.style.fontSize = "60px"
+            jokeText.style.fontWeight = "bold"
+            jokeText.style.textAlign = "center";
+            jokeText.style.marginTop = "50px";
+            jokeText.style.fontFamily = " 'Impact', sans-serif";
+            jokeText.style.animation = "flash 0.8s infinite";
+            document.body.appendChild(jokeText);
+
+            const danceVideo = document.createElement("video");
+danceVideo.src = "lozer1.MP4";
+danceVideo.autoplay = true;
+danceVideo.loop = true;
+danceVideo.muted = true; // если нужен автозапуск без клика
+danceVideo.style.width = "700px";
+danceVideo.style.display = "block";
+danceVideo.style.margin = "20px auto";
+document.body.appendChild(danceVideo);
+            const playAgainBtn = document.createElement("button");
+            playAgainBtn.innerText = "Play Again";
+            playAgainBtn.style.padding = "10px 20px";
+            playAgainBtn.style.fontSize = "18px";
+            playAgainBtn.style.display = "block";
+            playAgainBtn.style.margin = "30px auto";
+            playAgainBtn.style.cursor = "pointer";
+            document.body.appendChild(playAgainBtn);
+            playAgainBtn.addEventListener("click", () => {
+              location.reload();
+            });
+          }, 2000);
+        }
+      });
+    }
+    const startQuestRightBtn = document.getElementById("startQuestRight");
+    if (startQuestRightBtn) {
+      startQuestRightBtn.addEventListener("click", function () {
+        // Show screamer
+        const screamer = document.getElementById("screamer");
+        const screamerImg = document.getElementById("screamer-img");
+        if (screamer && screamerImg) {
+          screamerImg.src = "screamer-right2.jpg";
+          screamer.style.display = "block";
+          const screamSound = new Audio("door-right2.mp3");
+          screamSound.play();
+          setTimeout(() => {
+            screamer.remove();
+            document.body.innerHTML = "";
+            // Show joke, meme, and play again button
+            const jokeText = document.createElement("h2");
+            jokeText.innerText = "It’s painful to look at.!";
+            jokeText.style.color = "#00ffff";
+jokeText.style.fontSize = "55px";
+jokeText.style.fontWeight = "bold";
+jokeText.style.textAlign = "center";
+jokeText.style.marginTop = "60px";
+jokeText.style.fontFamily = "'Courier New', monospace";
+jokeText.style.textShadow = "0 0 10px cyan";
+jokeText.style.animation = "flash 1s infinite";
+            document.body.appendChild(jokeText);
+
+            const danceVideo = document.createElement("video");
+danceVideo.src = "lozer2.MP4";
+danceVideo.autoplay = true;
+danceVideo.loop = true;
+danceVideo.muted = true; // если нужен автозапуск без клика
+danceVideo.style.width = "500px";
+danceVideo.style.display = "block";
+danceVideo.style.margin = "20px auto";
+document.body.appendChild(danceVideo);
+            
+            
+            const playAgainBtn = document.createElement("button");
+            playAgainBtn.innerText = "Play Again";
+            playAgainBtn.style.padding = "10px 20px";
+            playAgainBtn.style.fontSize = "18px";
+            playAgainBtn.style.display = "block";
+            playAgainBtn.style.margin = "30px auto";
+            playAgainBtn.style.cursor = "pointer";
+            document.body.appendChild(playAgainBtn);
+            playAgainBtn.addEventListener("click", () => {
+              location.reload();
+            });
+          }, 2000);
+        }
+      });
+    }
+  };
+  
+  </script> 
+</body>
+</html>
