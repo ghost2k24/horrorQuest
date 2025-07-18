@@ -54,121 +54,74 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+      gap:20px;
   padding: 20px;
   box-sizing: border-box;
-  flex-wrap: nowrap; /* чтобы двери не переносились */
-  gap: 20px;
+  flex-wrap: wrap; /* чтобы двери не переносились */
 }
 
 .door {
   width: 300px;
-  max-width: 45vw;
   height: 500px;
   background-size: cover;
   background-position: center;
   cursor: pointer;
   flex-shrink: 0; /* не даём двери сжиматься */
   transition: transform 0.3s;
-  box-sizing: border-box;
 }
 
 .door:hover {
   transform: scale(1.05);
 }
 
-/* --- FINAL MOBILE FIX (REFINED) --- */
+/* Адаптация для телефонов */
+/* Адаптация для телефонов */
 @media (max-width: 768px) {
   .container {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 2vw !important;
-    padding: 0;
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
+    justify-content: center; /* центрируем двери */
+    gap: 15px; /* расстояние между дверьми */
+    flex-direction: column; /* двери одна под другой */
+    align-items: center;
   }
-  .door {
-    width: 38vw !important;
-    max-width: 140px !important;
-    min-width: 90px !important;
-    aspect-ratio: 4/5 !important;
-    height: auto !important;
-    border-radius: 8px !important;
-    object-fit: cover !important;
-    display: inline-block !important;
-    margin: 0 !important;
-  }
-  .door-block {
-    text-align: center !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  button, #startQuest, #startQuestLeft, #startQuestRight {
-    font-size: 1em !important;
-    padding: 10px 0 !important;
-    margin: 10px auto !important;
-    width: 80vw !important;
-    max-width: 180px !important;
-    min-width: 90px !important;
-    display: block !important;
-    border-radius: 8px !important;
-  }
-  .scary-image {
-    width: 80vw !important;
-    max-width: 320px !important;
-    height: auto !important;
-    margin: 16px auto 8px auto !important;
-    display: block !important;
-  }
-  .horror-text-left, .horror-text-right {
-    font-size: 1em !important;
-    padding: 8px 4px !important;
-    max-width: 95vw !important;
-    border-radius: 8px !important;
-    word-break: break-word !important;
-  }
-  .horror-text-left h2, .horror-text-right h2 {
-    font-size: 1em !important;
-    line-height: 1.2 !important;
-    padding: 0 !important;
-    margin: 0 0 10px 0 !important;
-    word-break: break-word !important;
-  }
-  #questRoomLeft img, #questRoomRight img {
-    max-width: 95vw !important;
-    height: auto !important;
-    margin-bottom: 10px !important;
-    border-radius: 8px !important;
-  }
-  #message {
-    font-size: 1.2em !important;
-    padding: 0 5vw !important;
-    width: 90vw !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    background: rgba(0,0,0,0.85) !important;
-    border-radius: 12px !important;
-    box-shadow: 0 0 20px #000 !important;
-  }
-  .final-video, video {
-    width: 90vw !important;
-    max-width: 320px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 12px auto !important;
-    border-radius: 10px !important;
-    background: #000 !important;
-  }
-}
-@media (max-width: 480px) {
-  h1 { font-size: 1.1em !important; }
-  .horror-text-left, .horror-text-right { font-size: 0.95em !important; padding: 4px 2px !important; }
-  .door { min-width: 70px !important; max-width: 120px !important; }
-  button, #startQuest, #startQuestLeft, #startQuestRight { font-size: 0.95em !important; padding: 8px 10px !important; max-width: 95vw !important; }
-}
-/* --- END FINAL MOBILE FIX --- */
 
-  @keyframes pulse {
+  .door {
+    width: 45vw;
+    height: 70vw;
+  }
+
+  .door-block {
+    flex: 1 1 90%; /* почти всю ширину на мобилке */
+    max-width: none;
+    text-align: center;
+  }
+
+  .door-block img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+  .screamer-img, .screamer {
+    max-height: 70vh;
+    width: 90vw;
+  }
+}
+  #questRoom {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  #message {
+    font-size: 24px;
+  }
+
+  .button, button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+    @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.03); }
   100% { transform: scale(1); }
@@ -284,141 +237,6 @@
   padding-bottom: 30px;
 }
 
-/* --- MOBILE OVERHAUL --- */
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-    font-size: 15px;
-  }
-  .scary-image {
-    width: 100vw;
-    max-width: 100vw;
-    height: auto;
-    margin: 0 auto 10px auto;
-    display: block;
-  }
-  h1 {
-    font-size: 2em;
-    margin: 10px 0 8px 0;
-    word-break: break-word;
-  }
-  p {
-    font-size: 1em;
-    margin: 0 10px 10px 10px;
-  }
-  .container {
-    flex-direction: row;
-    justify-content: center;
-    gap: 8px;
-    padding: 0;
-    max-width: 100vw;
-  }
-  .door {
-    width: 44vw;
-    max-width: 48vw;
-    height: auto;
-    min-width: 120px;
-    min-height: 120px;
-    border-radius: 8px;
-  }
-  .door-block {
-    text-align: center;
-  }
-  .horror-background-left, .horror-background-right {
-    height: auto;
-    min-height: 100vh;
-    padding: 0;
-    box-sizing: border-box;
-    align-items: flex-start;
-  }
-  .horror-text-left, .horror-text-right {
-    font-size: 1em;
-    padding: 8px 4px;
-    max-width: 98vw;
-    border-radius: 8px;
-  }
-  .horror-text-left h2, .horror-text-right h2 {
-    font-size: 1em;
-    line-height: 1.2;
-    padding: 0;
-    margin: 0 0 10px 0;
-    word-break: break-word;
-  }
-  #questRoomLeft img, #questRoomRight img {
-    max-width: 95vw;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 8px;
-  }
-  #message {
-    font-size: 1.3em !important;
-    padding: 0 5vw;
-    width: 100vw;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  button, #startQuest, #startQuestLeft, #startQuestRight {
-    font-size: 1em;
-    padding: 10px 18px;
-    margin: 10px auto;
-    width: 90vw;
-    max-width: 300px;
-    display: block;
-    border-radius: 8px;
-  }
-  .final-video, video {
-    width: 90vw !important;
-    max-width: 95vw !important;
-    height: auto !important;
-    display: block;
-    margin: 10px auto !important;
-    border-radius: 10px;
-    background: #000;
-  }
-}
-@media (max-width: 480px) {
-  h1 {
-    font-size: 1.3em;
-  }
-  .horror-text-left, .horror-text-right {
-    font-size: 0.95em;
-    padding: 4px 2px;
-  }
-  .door {
-    min-width: 80px;
-    min-height: 80px;
-  }
-  button, #startQuest, #startQuestLeft, #startQuestRight {
-    font-size: 0.95em;
-    padding: 8px 10px;
-    max-width: 95vw;
-  }
-}
-/* --- END MOBILE OVERHAUL --- */
-/* --- FINAL MOBILE FIX --- */
-@media (max-width: 768px) {
-  body { padding: 8px !important; font-size: 15px !important; overflow-x: hidden !important; }
-  .container { overflow-x: hidden !important; max-width: 100vw !important; }
-  .scary-image { width: 80vw !important; max-width: 320px !important; height: auto !important; margin: 16px auto 8px auto !important; display: block !important; }
-  h1 { font-size: 1.5em !important; margin: 8px 0 6px 0 !important; word-break: break-word !important; }
-  p { font-size: 1em !important; margin: 0 8px 10px 8px !important; }
-  .door { width: 40vw !important; max-width: 160px !important; min-width: 100px !important; height: auto !important; border-radius: 8px !important; }
-  .door-block { text-align: center !important; }
-  .horror-background-left, .horror-background-right { height: auto !important; min-height: 100vh !important; padding: 0 !important; box-sizing: border-box !important; align-items: flex-start !important; }
-  .horror-text-left, .horror-text-right { font-size: 1em !important; padding: 8px 4px !important; max-width: 95vw !important; border-radius: 8px !important; word-break: break-word !important; }
-  .horror-text-left h2, .horror-text-right h2 { font-size: 1em !important; line-height: 1.2 !important; padding: 0 !important; margin: 0 0 10px 0 !important; word-break: break-word !important; }
-  #questRoomLeft img, #questRoomRight img { max-width: 95vw !important; height: auto !important; margin-bottom: 10px !important; border-radius: 8px !important; }
-  #message { font-size: 1.2em !important; padding: 0 5vw !important; width: 100vw !important; left: 50% !important; transform: translate(-50%, -50%) !important; }
-  button, #startQuest, #startQuestLeft, #startQuestRight { font-size: 1em !important; padding: 10px 18px !important; margin: 10px auto !important; width: 90vw !important; max-width: 300px !important; display: block !important; border-radius: 8px !important; }
-  .final-video, video { width: 90vw !important; max-width: 320px !important; height: auto !important; display: block !important; margin: 12px auto !important; border-radius: 10px !important; background: #000 !important; }
-}
-@media (max-width: 480px) {
-  h1 { font-size: 1.1em !important; }
-  .horror-text-left, .horror-text-right { font-size: 0.95em !important; padding: 4px 2px !important; }
-  .door { min-width: 70px !important; max-width: 120px !important; }
-  button, #startQuest, #startQuestLeft, #startQuestRight { font-size: 0.95em !important; padding: 8px 10px !important; max-width: 95vw !important; }
-}
-/* --- END FINAL MOBILE FIX --- */
   </style>
 </head>
 <body>
@@ -429,11 +247,11 @@
   <div class="container" id="doorContainer">
     <div class="door-block">
       <button onclick="choose('left')">Go Left</button><br />
-      <img src="left-door.jpg" alt="Left Door" class="door" /><br />
+      <img src="left-door.jpg" alt="Left Door" width="400" height="400" /><br />
     </div>
     <div class="door-block">
       <button onclick="choose('right')">Go Right</button><br />
-      <img src="right-door.jpg" alt="Right Door" class="door" /><br />
+      <img src="right-door.jpg" alt="Right Door" width="400" height="400" /><br />
     </div>
   </div>
 
@@ -515,11 +333,6 @@
       document.querySelector("h1").style.display = "none";
       document.querySelector("p").style.display = "none";
       document.getElementById("doorContainer").style.display = "none";
-      // Hide any visible horror backgrounds
-      const leftBg = document.querySelector('.horror-background-left');
-      if (leftBg) leftBg.style.display = 'none';
-      const rightBg = document.querySelector('.horror-background-right');
-      if (rightBg) rightBg.style.display = 'none';
     }
     function choose(direction) {
       const screamer = document.getElementById("screamer");
@@ -640,7 +453,6 @@ danceVideo.src = "lozer1.MP4";
 danceVideo.autoplay = true;
 danceVideo.loop = true;
 danceVideo.muted = true; // если нужен автозапуск без клика
-danceVideo.className = "final-video";
 danceVideo.style.width = "700px";
 danceVideo.style.display = "block";
 danceVideo.style.margin = "20px auto";
@@ -692,7 +504,6 @@ danceVideo.src = "lozer2.MP4";
 danceVideo.autoplay = true;
 danceVideo.loop = true;
 danceVideo.muted = true; // если нужен автозапуск без клика
-danceVideo.className = "final-video";
 danceVideo.style.width = "500px";
 danceVideo.style.display = "block";
 danceVideo.style.margin = "20px auto";
