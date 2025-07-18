@@ -54,9 +54,10 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+      gap:20px;
   padding: 20px;
   box-sizing: border-box;
-  flex-wrap: nowrap; /* чтобы двери не переносились */
+  flex-wrap: wrap; /* чтобы двери не переносились */
 }
 
 .door {
@@ -73,14 +74,13 @@
   transform: scale(1.05);
 }
 
-
 /* Адаптация для телефонов */
 /* Адаптация для телефонов */
 @media (max-width: 768px) {
   .container {
     justify-content: center; /* центрируем двери */
     gap: 15px; /* расстояние между дверьми */
-    flex-direction: column; /* если хочешь, чтобы двери были одна под другой */
+    flex-direction: column; /* двери одна под другой */
     align-items: center;
   }
 
@@ -89,10 +89,24 @@
     height: 70vw;
   }
 
+  .door-block {
+    flex: 1 1 90%; /* почти всю ширину на мобилке */
+    max-width: none;
+    text-align: center;
+  }
+
+  .door-block img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
   .screamer-img, .screamer {
     max-height: 70vh;
     width: 90vw;
   }
+}
   #questRoom {
     font-size: 18px;
     padding: 10px;
