@@ -300,11 +300,13 @@
 
       .container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
-        gap: 2vw;
+        flex-wrap: nowrap;
+        gap: 20px;
         max-width: 100%;
         overflow-x: hidden;
+        padding: 0;
       }
 
       .door {
@@ -376,7 +378,8 @@
       </div>
     </div>
 
-    <div id="message" style="display: none; font-size: 80px; color: #ff1c1c; margin-top: 0; text-shadow: 3px 3px 20px black, 0 0 10px red; font-family: 'Nosifer', cursive; letter-spacing: 4px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000; animation: shake 0.6s; text-align: center; width: 100vw;">
+    <div id="message"
+      style="display: none; font-size: 80px; color: #ff1c1c; margin-top: 0; text-shadow: 3px 3px 20px black, 0 0 10px red; font-family: 'Nosifer', cursive; letter-spacing: 4px; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10000; animation: shake 0.6s; text-align: center; width: 100vw;">
       GOTCHA, LOSER!
     </div>
 
@@ -386,7 +389,8 @@
         <div class="horror-text-left">
           <div>
           </div>
-          <img src="hospital.jpg.png" alt="hospital" style="width: 100%; max-width: 600px; margin: 0 auto 30px auto; display: block; border: none !important; box-shadow: none !important; outline: none;">
+          <img src="hospital.jpg.png" alt="hospital"
+            style="width: 100%; max-width: 600px; margin: 0 auto 30px auto; display: block; border: none !important; box-shadow: none !important; outline: none;">
           <h2>“You wake up in a cold, decaying children’s hospital. The walls are stained, the air thick with rot. This
             place was once a lab of nightmares—where children screamed, and no one listened.
             Suddenly, a soft, distorted voice whispers from the shadows:<br>
@@ -402,7 +406,8 @@
     <div id="questRoomRight" style="display:none;">
       <div class="horror-background-right">
         <div class="horror-text-right">
-          <img src="hotel.jpg" alt="hotel" style="width: 100%; max-width: 600px; margin: 0 auto 30px auto; display: block; border: none !important; box-shadow: none !important; outline: none;">
+          <img src="hotel.jpg" alt="hotel"
+            style="width: 100%; max-width: 600px; margin: 0 auto 30px auto; display: block; border: none !important; box-shadow: none !important; outline: none;">
           <h2>You find yourself standing in the lobby of Hotel 666 — a place once known for luxury, now abandoned and
             frozen in time.
             The chandeliers sway without wind. The elevator dings… but no one is inside.
